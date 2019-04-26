@@ -3,7 +3,7 @@ package Types;
 
 public class ParkingLotDS {
 	private static Car[] parkingLot;
-	public static int  size;
+	private  static int  size;
 	 ParkingLotDS(int size){
 		this.size=size;
 	}
@@ -19,4 +19,5 @@ public class ParkingLotDS {
 		// TODO Auto-generated method stub
 		size=size2;
 	}
+
 }

@@ -26,7 +26,7 @@ public class ParkCommand implements Command {
 		
 		@Override
 		public Object execute() {
-			System.out.println(this.parkingLot.length);
+			//System.out.println(this.parkingLot.length);
 			// TODO Auto-generated method stub
 			for(int i=0;i<this.parkingLot.length;++i) {
 				if(this.parkingLot[i] == null) {

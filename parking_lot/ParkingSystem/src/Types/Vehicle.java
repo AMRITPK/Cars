@@ -9,7 +9,7 @@ public class Vehicle {
 		this.registraionNO=regNum;
 
 		for (Color c : Color.values()) {
-		    System.out.println(c);
+
 		    if(colorString.equals(c+"")) {
 		    		this.color=c;
 		    }

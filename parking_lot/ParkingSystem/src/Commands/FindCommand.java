@@ -14,10 +14,10 @@ public class FindCommand implements Command {
 		private Car[] parkingLot;
 		private Map<String,Integer> regNumberMap;
 	
-		private Color color;
+		private String color;
 		
 	
-		public FindCommand( Color color){
+		public FindCommand( String color){
 			
 			this.parkingLot=ParkingLotDS.getParkingLotDS();
 			this.regNumberMap=RegNumLotDS.getRegNumLotDS();
@@ -31,8 +31,8 @@ public class FindCommand implements Command {
 			for(int i=0;i<this.parkingLot.length;++i) {
 				if(this.parkingLot[i] != null) {
 					Car c=this.parkingLot[i];
-					if(c.getColor()==this.color) {
-						al.add(c);
+					if(c.getColor()+""==this.color) {
+						al.add(i);
 					}
 				
 				}
