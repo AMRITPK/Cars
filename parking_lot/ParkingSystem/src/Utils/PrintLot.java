@@ -12,10 +12,10 @@ public class PrintLot {
 		this.lot=lot;
 	}
 	public void print() {
-		System.out.println("Slot No. \t Registration No \t Colour");
+		System.out.println("Slot No.  Registration No  Colour    ");
 		for (int i=0;i<this.lot.length;++i) {
 			if(this.lot[i]!=null) {
-				System.out.println(i+1+"\t"+this.lot[i].getRegistraionNO()+"\t"+this.lot[i].getColor());
+				System.out.println(Helper.fixedLengthString(""+(i+1),10)+Helper.fixedLengthString(this.lot[i].getRegistraionNO(),17)+Helper.fixedLengthString(this.lot[i].getColor()+"",17));
 			}
 			
 		}
@@ -29,20 +29,22 @@ public class PrintLot {
 				Car[] lot=ParkingLotDS.getParkingLotDS();
 				System.out.print(lot[index].getRegistraionNO());
 				if(counter!=findByColor.size()) {
-					System.out.print(",");
+					System.out.print(", ");
 				}
 				counter++;			
 			}	
+			System.out.println("");
 		}else if(type=="LOT") {
 			int counter=1;
 			for(Object o:findByColor) {
 				int index=(int)o;
 				System.out.print(index+1);
 				if(counter!=findByColor.size()) {
-					System.out.print(",");
+					System.out.print(", ");
 				}
 				counter++;			
-			}	
+			}
+			System.out.println("");
 		}
 	}
 }

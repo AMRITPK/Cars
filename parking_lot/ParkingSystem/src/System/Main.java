@@ -23,7 +23,6 @@ public class Main {
 	
 
 	public static void main( String[] args)  {
-		
 		try {
 			BufferedReader br= new BufferedReader(new FileReader(new File("parking_lot file_inputs.txt")));
 			
@@ -34,6 +33,7 @@ public class Main {
 				if(line.startsWith("create_parking_lot")) {
 					int size=Integer.parseInt(line.split(" ")[1]);
 					ParkingLotDS.setSize(size);
+					System.out.println("Created a parking lot with "+size+" slots");
 				}else if(line.startsWith("park")){
 					String regno=line.split(" ")[1];
 					String color=line.split(" ")[2];
@@ -44,10 +44,18 @@ public class Main {
 						// TODO Auto-generated catch block
 						throw new Exception("Invalid colour");
 					}
-					int rerurnIndex=park(car1,car1.getColor());
+					int returnIndex=park(car1,car1.getColor());
+					if(returnIndex==-1)
+						System.out.println("Sorry, parking lot is full");
+					else
+						System.out.println("Allocated slot number: "+(returnIndex+1));
 				}else if(line.startsWith("leave")){
 					int index=Integer.parseInt(line.split(" ")[1]);
-					System.out.println(leave(index-1));
+					Car c=leave(index-1);
+					if (c!=null)
+						System.out.println("Slot number "+(index)+" is free");
+					else
+						System.out.println("Invalid slot!!");
 				}else if(line.startsWith("status")){
 					new Utils.PrintLot(ParkingLotDS.getParkingLotDS()).print();
 					
@@ -59,7 +67,13 @@ public class Main {
 					new Utils.PrintLot(ParkingLotDS.getParkingLotDS()).print("LOT",findByColor(color));
 				}else if(line.startsWith("slot_number_for_registration_number")){
 					String num =line.split(" ")[1];
-					System.out.println(1+findByNumber(num));
+					Integer i=findByNumber(num);
+					if(i==null) {
+						System.out.println("Not found");
+					}else {
+						System.out.println((1+i));
+					}
+					
 				} 
 			}
 		} catch (FileNotFoundException e1) {
@@ -101,7 +115,10 @@ public class Main {
 		
 	}
 	public static Integer findByNumber(String regNo) {
-		return RegNumLotDS.getRegNumLotDS().get(regNo);
+	
+		Integer a= RegNumLotDS.getRegNumLotDS().get(regNo);
+	//System.out.println(a);
+		return a;
 	}
 	public static List findByColor(String color) {
 		Command findCAr = new FindCommand(color);

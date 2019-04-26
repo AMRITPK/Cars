@@ -31,9 +31,9 @@ public class FindCommand implements Command {
 			for(int i=0;i<this.parkingLot.length;++i) {
 				if(this.parkingLot[i] != null) {
 					Car c=this.parkingLot[i];
-					if(c.getColor()+""==this.color) {
-						al.add(i);
-					}
+						if((c.color.name()+"").equals(this.color+"") ){
+						al.add(new Integer(i));
+						}
 				
 				}
 			}

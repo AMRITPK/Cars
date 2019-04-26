@@ -2,7 +2,7 @@ package Types;
 
 public class Vehicle {
 	private String registraionNO;
-	private Color color;
+	public Color color;
 	
 	public Vehicle(String regNum,String colorString) throws Exception{
 		super();
@@ -27,7 +27,7 @@ public class Vehicle {
 		this.registraionNO = registraionNO;
 	}
 	public Color getColor() {
-		return color;
+		return this.color;
 	}
 	public void setColor(Color color) {
 		this.color = color;

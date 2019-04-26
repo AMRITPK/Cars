@@ -24,7 +24,7 @@ public class TestingParkingLotDS {
 		Car[] nparkingLot = ParkingLotDS.getParkingLotDS();
 		Car[] nparkingLot1 = ParkingLotDS.getParkingLotDS();
 		assertEquals(nparkingLot.length,10);
-		assertEquals(nparkingLot.length,nparkingLot1.length+1);
+		assertEquals(nparkingLot.length,nparkingLot1.length);
 	}
 
 }
