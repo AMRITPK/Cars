@@ -18,7 +18,7 @@ public class ParkingLotDS {
 	public static void setSize(int size2) {
 		// TODO Auto-generated method stub
 		size=size2;
-		parkingLot= new Car[size];
+		//parkingLot= new Car[size];
 	}
 	public static int getSize() {
 		// TODO Auto-generated method stub

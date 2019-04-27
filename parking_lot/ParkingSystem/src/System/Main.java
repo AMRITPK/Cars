@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import Commands.Command;
 import Commands.FindCommand;
@@ -21,7 +22,7 @@ import Types.ParkingLotDS;
 import Types.RegNumLotDS;
 
 public class Main {
-	private static FunctionWrapper wrapper;
+	private static FunctionWrapper wrapper= new FunctionWrapper() ;
 	public static void commandParse(String line) throws Exception {
 		if(line.startsWith("create_parking_lot")) {
 			int size=Integer.parseInt(line.split(" ")[1]);
@@ -34,7 +35,7 @@ public class Main {
 			try {
 				car1 = new Car(regno,color);
 			} catch (Exception e) {
-				
+
 				throw new Exception("Invalid colour");
 			}
 			try {
@@ -46,7 +47,7 @@ public class Main {
 			}catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			
+
 		}else if(line.startsWith("leave")){
 			int index=Integer.parseInt(line.split(" ")[1]);
 			Car c= wrapper.leave(index-1);
@@ -72,63 +73,55 @@ public class Main {
 				System.out.println((1+i));
 			}
 
-		} 
-	}
-	public static void main( String[] args)  {
+		}else {
+			BufferedReader br;
 
-		wrapper=new FunctionWrapper();
+			br = new BufferedReader(new FileReader(new File(line)));
+
+			while(true) {
+
+				String line1;
+				line1 = br.readLine();
+				if(line1==null)break;
+				commandParse(line1);
+
+
+			}
+		}
+	}
+	public static void main( String[] args1)  {
 		try {
-			String fileName="parking_lot_file_inputs.txt";
-			BufferedReader br= null;
-			if(args[0]!=null) {
-				if(args[0].toString().startsWith("create_parking_lot") ||
-						args[0].toString().startsWith("park") ||
-						args[0].toString().startsWith("leave") ||
-						args[0].toString().startsWith("status")||
-						args[0].toString().startsWith("registration_numbers_for_cars_with_colour")||
-						args[0].toString().startsWith("slot_numbers_for_cars_with_colour")||
-						args[0].toString().startsWith("slot_number_for_registration_number")
-						) {
-					commandParse(args[0].toString());
-				}else {
-					fileName=args[0];
-					 br= new BufferedReader(new FileReader(new File(fileName)));
+			if(args1!=null&&args1.length>0) {
+				commandParse(args1[0]);
+			}
+				wrapper=new FunctionWrapper();
+
+
+				String line;
+				Scanner scanner = new Scanner(System.in);
+				while((line = scanner.nextLine())!=null) {
+
+					commandParse(line.toString());
 
 				}
-				
-			}
-			//System.out.println(args[0]);
 			
-			while(true) {
-				
-				String line=br.readLine();
-			
-				if(line==null)break;
-				commandParse(line);
-			
-			}
-		} catch (FileNotFoundException e1) {
+	
+
+
+
+
+		}
+		catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			System.out.println("Invalid file path or file");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			System.out.println("IO error in reading file");
-		}catch (ArrayIndexOutOfBoundsException e1) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Invalid file format");
-			e1.printStackTrace();
-			System.out.println(e1.toString()); 
-			System.out.println(e1.getLocalizedMessage()); 
-			
-		}catch (Exception e1) {
-			// TODO Auto-generated catch block
-			System.out.println(e1.getMessage());
+			System.out.println("Generic Error");
+			e.printStackTrace();
 		}
 
-
-
-
 	}
-
-
 }
