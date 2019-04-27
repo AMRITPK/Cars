@@ -12,12 +12,15 @@ public class PrintLot {
 		this.lot=lot;
 	}
 	public void print() {
-		System.out.println("Slot No.  Registration No  Colour    ");
+		System.out.println("Slot No.    Registration No    Colour");
+		if(this.lot.length==0) {
+			System.out.println("Parking Lot Empty");
+		}
 		for (int i=0;i<this.lot.length;++i) {
 			if(this.lot[i]!=null) {
-				System.out.println(Helper.fixedLengthString(""+(i+1),10)+Helper.fixedLengthString(this.lot[i].getRegistraionNO(),17)+Helper.fixedLengthString(this.lot[i].getColor()+"",17));
+				System.out.println(Helper.fixedLengthString(""+(i+1),12)+Helper.fixedLengthString(this.lot[i].getRegistraionNO(),19)+(this.lot[i].getColor()+""));
 			}
-			
+
 		}
 	}
 	public void print(String type, List findByColor) {
@@ -33,7 +36,12 @@ public class PrintLot {
 				}
 				counter++;			
 			}	
-			System.out.println("");
+			if(findByColor.size()==0) {
+				System.out.println("Not Present");
+			}else {
+				System.out.println("");
+			}
+			
 		}else if(type=="LOT") {
 			int counter=1;
 			for(Object o:findByColor) {
@@ -44,7 +52,12 @@ public class PrintLot {
 				}
 				counter++;			
 			}
-			System.out.println("");
+			if(findByColor.size()==0) {
+				System.out.println("Not Present");
+			}else {
+				System.out.println("");
+			}
+			
 		}
 	}
 }

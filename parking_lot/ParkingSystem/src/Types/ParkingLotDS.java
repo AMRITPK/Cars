@@ -4,7 +4,7 @@ package Types;
 public class ParkingLotDS {
 	private static Car[] parkingLot;
 	private  static int  size;
-	 ParkingLotDS(int size){
+	ParkingLotDS(int size){
 		this.size=size;
 	}
 	public static Car[] getParkingLotDS(){
@@ -18,6 +18,11 @@ public class ParkingLotDS {
 	public static void setSize(int size2) {
 		// TODO Auto-generated method stub
 		size=size2;
+		parkingLot= new Car[size];
+	}
+	public static int getSize() {
+		// TODO Auto-generated method stub
+		return size;
 	}
 
 }
