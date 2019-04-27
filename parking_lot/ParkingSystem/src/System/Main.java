@@ -73,6 +73,9 @@ public class Main {
 				System.out.println((1+i));
 			}
 
+		}else if(line.startsWith("exit")){
+			System.exit(0);		
+
 		}else {
 			BufferedReader br;
 
